@@ -22,16 +22,14 @@ all_data = sci.loadmat("demux_256_16200_allCR.mat")
 
 input_data = np.array(all_data['v'])[0][0]
 output_data_check = np.array(all_data['y'])[0][0]
-print(input_data.shape)
-print(output_data_check.shape)
 
 output_data = np.zeros((N_FRAMES, N_CELLS, N_SUBSTREAMS))
 
 for frame_number in range(N_FRAMES):
-    for i in range(int(N_LDPC / N_SUBSTREAMS)):
-        temp_input_data = input_data[i * 8:(i + 1) * 8, frame_number]
+    for bit_number in range(int(N_LDPC / N_SUBSTREAMS)):
+        temp_input_data = input_data[bit_number * 8:(bit_number + 1) * 8, frame_number]
 
-        output_data[frame_number][i][:] = np.array([temp_input_data[7], temp_input_data[2], temp_input_data[4],
+        output_data[frame_number][bit_number][:] = np.array([temp_input_data[7], temp_input_data[2], temp_input_data[4],
                                                     temp_input_data[1], temp_input_data[6], temp_input_data[3],
                                                     temp_input_data[5], temp_input_data[0]])
 
