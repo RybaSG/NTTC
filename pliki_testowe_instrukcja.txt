@@ -1,0 +1,15 @@
+Zasady kodowania nazwy pliku
+		"demux_RozmiarKonstelacji_RozmiarRamkiBinarnej_CodeRate.mat"
+RozmiarRamkiBinarnej - 16200 lub 64800
+RozmiarKonstelacji - 4 lub 16 lub 64 lub 256
+CodeRate - allCR (wszystkie stopy kodu), without35 (bez 3/5), without23-35 (bez 2/3 i 3/5), 23 (2/3), 35 (3/5)
+
+Przyk³ad:	demux_64_64800_35.mat
+
+- Wartoœci zmiennych w zbiorach testowych zapisane s¹ w komórkach (cell). Zawartoœæ komórki jest dopiero docelow¹ tablic¹ z danymi;
+
+- Dla ka¿dego zbioru testowego (pliku *.mat) wygenerowano zestaw 100 losowych wejœciowych ramek binarnych, które po przeplocie bitowym zapisane s¹ do zmiennej v;
+
+- Je¿eli to mo¿liwe, nazwy zmiennych s¹ zgodne z nazwami stosowanymi w specyfikacji: 
+	v - wejœciowa tablica binarna uk³adu demultipleksera (wiersze - pozycja bitu w ramce, kolumna - numer ramki)  
+	y - wyjœciowa tablica binarna uk³adu demultipleksera (wiersze - numer "cell word", kolumna - bity w "cell word", 3wymiar - numer ramki)
