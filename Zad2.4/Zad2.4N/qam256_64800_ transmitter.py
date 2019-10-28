@@ -46,7 +46,7 @@ class qam256_64800:
 		self.rate = self.rates[rate]
 		self.inputData = matlabFiles["v"][0][0]
 		self.correctOutputData = matlabFiles["y"][0][0]
-		self.outputData = np.zeros((int(self.nLdpc/self.nStreams), self.nStreams, self.nFrames), dtype = int)
+		self.outputData = np.zeros((int(self.nLdpc/self.nStreams), self.nStreams, self.nFrames), dtype = bool)
 		
 		
 	def demultiplex(self):
