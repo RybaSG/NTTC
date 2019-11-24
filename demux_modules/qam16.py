@@ -19,7 +19,7 @@ class QAM16:
 
         matlabFiles = sci.loadmat(input_path)
         self.rate = self.rates[nLdpc]
-        if nLdpc == '64800' and code_rate == '3/5':
+        if nLdpc == '64800' and code_rate != '3/5':
             self.rate = self.rates["16200"]
         self.nLdpc = int(nLdpc)
         self.output_path = output_path
