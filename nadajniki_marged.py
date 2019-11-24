@@ -1,7 +1,7 @@
 import argparse
 import sys
 
-from demux_modules import qam256_mod16200, qam256_mod64800, qpsk, qam16
+from demux_modules import qam256_mod16200, qam256_mod64800, qpsk, qam16, qam64
 
 
 def main():
@@ -58,8 +58,14 @@ def main():
             args.input_path, args.output_path, args.nLdpc, args.code_rate
         )
     elif args.modulation == "64QAM":
-        # TODO
-        print("TODO")
+        temp_code_rate = args.code_rate
+        if args.code_rate not in ["2/3", "3/5"]:
+            temp_code_rate = "rest"
+        demux = qam64.QAM64(args.input_path, args.output_path, args.nLdpc, temp_code_rate)
+        demux.demultiplex()
+        demux.check_result()
+        demux.save()
+
     elif args.modulation == "256QAM":
         if args.nLdpc == "16200":
             demux = qam256_mod16200.QAM256L16200(args.input_path, args.output_path)
