@@ -42,8 +42,12 @@ for frame in range(FRAMES):
 
 if(inputDataMat == inputData).all():
     print("Data check passed")
+    #save to mat
+    dictionaryInput = {"v": inputData}
+    sci.savemat("input2_3RX.mat", dictionaryInput)
 else:
     print("Data check failed")
+
 
 # TODO:
 # * class?
