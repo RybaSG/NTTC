@@ -1,11 +1,9 @@
-#!/usr/bin/python
-
-import scipy.io as sio
+import scipy.io as sci
 import numpy as np
 import math
 
 
-class qam256_64800:
+class QAM256L64800:
     nStreams = 16
     nMod = 8
     nLdpc = 64800
@@ -21,17 +19,11 @@ class qam256_64800:
         "rest": rateRest
     }
 
-    paths = {
-        "2/3": 'demux_256_64800_23.mat',
-        "3/5": 'demux_256_64800_35.mat',
-        "rest": 'demux_256_64800_without23-35.mat'
-    }
+    def __init__(self, rate, input_path, save_path):
 
-    def __init__(self, rate):
-        self.path = self.paths[rate]
-        matlabFiles = sio.loadmat(self.path)
-
+        matlabFiles = sci.loadmat(input_path)
         self.rate = self.rates[rate]
+        self.save_path = save_path
         self.inputData = matlabFiles["v"][0][0]
         self.correctOutputData = matlabFiles["y"][0][0]
         self.outputData = np.zeros((int(self.nLdpc / self.nStreams), self.nStreams, self.nFrames), dtype=bool)
@@ -52,10 +44,15 @@ class qam256_64800:
 
     def save(self):
         mat = {"y": self.outputData}
-        sio.savemat(f"out_{self.path}", mat)
+        sci.savemat(f"self.save_path", mat)
 
 
-qam23 = qam256_64800("rest")
-qam23.demultiplex()
-qam23.checkResult()
-qam23.save()
+def main():
+    qam256 = QAM256L64800("2/3", "mat_test_files/demux_256_64800_23.mat", "out.mat")
+    qam256.demultiplex()
+    qam256.checkResult()
+    qam256.save()
+
+
+if __name__ == '__main__':
+    main()
