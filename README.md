@@ -65,9 +65,9 @@ wyświetlona na konsoli.
 W celu wykorzystania części odbiorczej, należy użyć skryptu _odbiorniki_marged,py_. 
 W celu prawidłowego działania skryptu należy wywołać go poprzez linię poleceń w następujący sposób:
 
-    ```
-    python3 odbiorniki_meged.py <numer_zadania> <ścieżka_pliku.mat>
-    ```
+```
+python3 odbiorniki_meged.py <numer_zadania> <ścieżka_pliku.mat>
+```
 
 Gdzie numer zadanie może przyjmować wartości:
 - 1.1 - Modulacja QPSK, LDPC = 16200
