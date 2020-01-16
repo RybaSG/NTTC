@@ -69,7 +69,7 @@ W celu prawidłowego działania skryptu należy wywołać go poprzez linię pole
     python3 odbiorniki_meged.py <numer_zadania> <ścieżka_pliku.mat>
     ```
 
-    Gdzie numer zadanie może przyjmować wartości:
+Gdzie numer zadanie może przyjmować wartości:
 - 1.1 - Modulacja QPSK, LDPC = 16200
 - 1.2 - Modulacja QPSK, LDPC = 64800
 - 1.3 - Modulacja QAM16, LDPC = 64800, stopa kodu = 3/5
