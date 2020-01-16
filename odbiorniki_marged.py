@@ -1,6 +1,7 @@
 import scipy.io as sci
 import numpy as np
 import math
+import sys
 ##funkcje##
 
 def qpsk_o(file):  # funkcja QPSK_odbiornik
@@ -253,82 +254,94 @@ def qam64_35_o(file,LDPC):
     mat_out = {"v_output": V}
     sci.savemat(f"demux_64_64800_35_out", mat_out)
 
-while True:
-    print("1) 2.1 O")
-    print("2) 2.2 O")
-    print("3) 2.3 O")
-    choice = input("Proszę wybrać odbiornik: ")
+# while True:
 
-    if choice == "3":
-        print("\n")
-        FRAMES = 100
-        LDPC = 16200
-        SUBSTREAMS = 8
-        MOD = 8
-        CELLS = int(LDPC / SUBSTREAMS)
+choice = sys.argv[1]
+file = sys.argv[2]
 
-        matData = sci.loadmat("mat_test_files/demux_256_16200_allCR.mat")
+print(choice, file)
 
-        inputDataMat = np.array(matData["v"])[0][0]
-        outputDataMat = np.array(matData["y"])[0][0]
+    # print("1) 2.1 O")
+    # print("2) 2.2 O")
+    # print("3) 2.3 O")
+    # choice = input("Proszę wybrać odbiornik: ")
+    # file = input("Proszę wprowadzić ścieżkę pliku: ")
 
-        inputData = np.zeros((LDPC, FRAMES))
+if choice == "3":
+    print("\n")
+    FRAMES = 100
+    LDPC = 16200
+    SUBSTREAMS = 8
+    MOD = 8
+    CELLS = int(LDPC / SUBSTREAMS)
 
-        # 16200 bits x 100 FRAMES
-        for frame in range(FRAMES):
-            tempLDPC = []
-            for cell in range(CELLS):
-                tempBits = outputDataMat[cell, :, frame]
+    matData = sci.loadmat(file)
 
-                decode = np.array(
-                    [
-                        tempBits[7],  # 7:0
-                        tempBits[3],  # 3:1
-                        tempBits[1],  # 1:2
-                        tempBits[5],  # 5:3
-                        tempBits[2],  # 2:4
-                        tempBits[6],  # 6:5
-                        tempBits[4],  # 4:6
-                        tempBits[0]  # 0:7
-                    ]
-                )
+    inputDataMat = np.array(matData["v"])[0][0]
+    outputDataMat = np.array(matData["y"])[0][0]
 
-                for bit in range(MOD):
-                    tempLDPC.append(decode[bit])
+    inputData = np.zeros((LDPC, FRAMES))
 
-            inputData[:, frame] = np.array(tempLDPC)
+    # 16200 bits x 100 FRAMES
+    for frame in range(FRAMES):
+        tempLDPC = []
+        for cell in range(CELLS):
+            tempBits = outputDataMat[cell, :, frame]
 
-        if (inputDataMat == inputData).all():
-            print("Data check passed")
-            # save to mat
-            dictionaryInput = {"v": inputData}
-            print("Result saved as \"input2_3RX.mat\"\n")
-            sci.savemat("input2_3RX.mat", dictionaryInput)
-        else:
-            print("Data check failed")
+            decode = np.array(
+                [
+                    tempBits[7],  # 7:0
+                    tempBits[3],  # 3:1
+                    tempBits[1],  # 1:2
+                    tempBits[5],  # 5:3
+                    tempBits[2],  # 2:4
+                    tempBits[6],  # 6:5
+                    tempBits[4],  # 4:6
+                    tempBits[0]  # 0:7
+                ]
+            )
 
-    elif choice == "1":
-        print("demux_4_16200_allCR.mat")
-        qpsk_o("mat_test_files/demux_4_16200_allCR.mat")
-        print("demux_4_64800_allCR.mat")
-        qpsk_o("mat_test_files/demux_4_64800_allCR.mat")
-        print("demux_16_64800_without35.mat")
-        qam16_wo35_o('mat_test_files/demux_16_64800_without35.mat', 64800)
-        print("demux_16_16200_allCR.mat")
-        qam16_wo35_o('mat_test_files/demux_16_16200_allCR.mat', 16200)
-        print("demux_16_64800_35.mat")
-        qam16_35_o('mat_test_files/demux_16_64800_35.mat', 64800)
+            for bit in range(MOD):
+                tempLDPC.append(decode[bit])
 
-    elif choice == "2":
-        print("demux_16_64800_without35.mat")
-        qam64_wo35_o('mat_test_files/demux_64_64800_without35.mat', 64800)
-        print("demux_16_16200_allCR.mat")
-        qam64_wo35_o('mat_test_files/demux_64_16200_allCR.mat', 16200)
-        print("demux_16_64800_35.mat")
-        qam64_35_o('mat_test_files/demux_64_64800_35.mat', 64800)
+        inputData[:, frame] = np.array(tempLDPC)
 
+    if (inputDataMat == inputData).all():
+        print("Data check passed")
+        # save to mat
+        dictionaryInput = {"v": inputData}
+        print("Result saved as \"input2_3RX.mat\"\n")
+        sci.savemat("input2_3RX.mat", dictionaryInput)
     else:
-        print("Wrong input\n")
+        print("Data check failed")
+
+elif choice == "1.1":
+    # print("demux_4_16200_allCR.mat")
+    qpsk_o(file)
+elif choice == "1.2":
+    # print("demux_4_64800_allCR.mat")
+    qpsk_o(file)
+elif choice == "1.3":
+    # print("demux_16_64800_without35.mat")
+    qam16_wo35_o(file, 64800)
+elif choice == "1.4":
+    # print("demux_16_16200_allCR.mat")
+    qam16_wo35_o(file, 16200)
+elif choice == "1.5":
+    # print("demux_16_64800_35.mat")
+    qam16_35_o(file, 64800)
+
+elif choice == "2.1":
+    # print("demux_16_64800_without35.mat")
+    qam64_wo35_o(file, 64800)
+elif choice == "2.2":
+    # print("demux_16_16200_allCR.mat")
+    qam64_wo35_o(file, 16200)
+elif choice == "2.3":
+    # print("demux_16_64800_35.mat")
+    qam64_35_o(file, 64800)
+
+else:
+    print("Wrong input\n")
 
 
-1

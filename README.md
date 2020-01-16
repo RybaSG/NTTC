@@ -53,7 +53,7 @@ zostanie zaprezentowana stosowna informacja.
 ### 3.1.1 Szybkie testowanie
 W celu szybkiego przetestowania wszystkich możliwych konfiguracji skryptu dla przygotowanych 
 [danych](./mat_test_files) (istotny jest sposób nazywania plików) należy uruchomić skrypt 
-_test_files.py_. 
+_test_files.py_.
 
 Po ukończeniu działania skryptu zostanie utworzony plik _result.txt_, w którym zostaną zaprezentowane
 wszystkie użyte konfiguracje komend oraz informacja czy dane zostały prawidłowo zdemultipleksowane.
@@ -63,28 +63,23 @@ wyświetlona na konsoli.
 
 ## 3.2 Odbiornik
 W celu wykorzystania części odbiorczej, należy użyć skryptu _odbiorniki_marged,py_. 
-W celu prawidłowego działania skryptu należy przekazać następujące parametry wejściowe:
-- Ścieżka dostępu do pliku _*.mat_ zawierającego dane do przetworzenia 
-    ```-
-    -input_path <input_mat_file_dir>.mat
+W celu prawidłowego działania skryptu należy wywołać go poprzez linię poleceń w następujący sposób:
+
     ```
-- Typ modulacji
+    python3 odbiorniki_meged.py <numer_zadania> <ścieżka_pliku.mat>
     ```
-    --modulation [4QAM/QPSK/16QAM/64QAM/256QAM]
-    ```
-- Wartość N_ldpc
-    ```
-    --nLdpc [16200/64800]
-    ```
-- Wartość stopy kodu (parametr opcjonalny)
-    ```
-    --code_rate [1/2 / 3/4 / 4/5 / 5/6 / 3/5 / 2/3]
-    ```
-- Ścieżka pliku wyjściowego
-    ```
-    --output_path <output_mat_file_dir>
-    ```
-  
+
+    Gdzie numer zadanie może przyjmować wartości:
+- 1.1 - Modulacja QPSK, LDPC = 16200
+- 1.2 - Modulacja QPSK, LDPC = 64800
+- 1.3 - Modulacja QAM16, LDPC = 64800, stopa kodu = 3/5
+- 1.4 - Modulacja QAM16, LDPC = 16200, stopa kodu = 3/5
+- 1.5 - Modulacja QAM16, LDPC = 64800, stopa kodu = 3/5
+- 2.1 - Modulacja QAM64, LDPC = 64800, stopa kodu = 3/5
+- 2.2 - Modulacja QAM64, LDPC = 16200, stopa kodu = 3/5
+- 2.3 - Modulacja QAM64, LDPC = 64800, stopa kodu = 3/5
+- 3   - Modulacja QAM256, LDPC = 16200
+
 Po uruchomieniu skryptu na przykładowych [danych](./mat_test_files) dane otrzymane przez skrypt 
 zostaną porównane z danymi znajdującymi się w pliku _*.mat_. Jeżeli dane się zgadzają na konsoli
 zostanie zaprezentowana stosowna informacja.
