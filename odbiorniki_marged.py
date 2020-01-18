@@ -484,9 +484,11 @@ elif choice == "2.2":
 elif choice == "2.3":
     # print("demux_16_64800_35.mat")
     qam64_35_o(file, 64800)
-elif choice == "2.4":
-    # print("demux_256_64800_without_23.mat")
+elif choice == "3.1":
+    # print("demux_256_64800_without_23-35.mat")
     qam256_wo2335_o(file, 64800)
+elif choice == "3.2":
+    # print("demux_256_64800_35.mat")
     qam256_35_o(file, 64800)
 else:
     print("Wrong input\n")
