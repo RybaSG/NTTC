@@ -253,6 +253,150 @@ def qam64_35_o(file,LDPC):
         print("nie OK")
     mat_out = {"v_output": V}
     sci.savemat(f"demux_64_64800_35_out", mat_out)
+    
+def qam256_wo2335_o(file, LDPC):
+    mat = sio.loadmat(file)
+
+    y = mat['y']
+    yy = y[0, 0]
+
+    v = mat['v']
+    vv = v[0, 0]
+
+    substreams = 16
+    nmod = 8
+
+    V = [0] * LDPC
+
+    for i in range(len(yy)):
+        for j in range(len(yy[i])):
+            if ((i * nmod + j) % substreams == 0):
+                V[15 + math.floor((i * nmod + j) / substreams) * substreams] = yy[i, j]
+
+            if ((i * nmod + j) % substreams == 1):
+                V[1 + math.floor((i * nmod + j) / substreams) * substreams] = yy[i, j]
+
+            if ((i * nmod + j) % substreams == 2):
+                V[(13 + math.floor((i * nmod + j) / substreams) * substreams)] = yy[i, j]
+            #
+            if ((i * nmod + j) % substreams == 3):
+                V[(3 + math.floor((i * nmod + j) / substreams) * substreams)] = yy[i, j]
+            #
+            if ((i * nmod + j) % substreams == 4):
+                V[(10 + math.floor((i * nmod + j) / substreams) * substreams)] = yy[i, j]
+            #
+            if ((i * nmod + j) % substreams == 5):
+                V[(7 + math.floor((i * nmod + j) / substreams) * substreams)] = yy[i, j]
+            #
+            if ((i * nmod + j) % substreams == 6):
+                V[(9 + math.floor((i * nmod + j) / substreams) * substreams)] = yy[i, j]
+            #
+            if ((i * nmod + j) % substreams == 7):
+                V[(11 + math.floor((i * nmod + j) / substreams) * substreams)] = yy[i, j]
+
+            if ((i * nmod + j) % substreams == 8):
+                V[(4 + math.floor((i * nmod + j) / substreams) * substreams)] = yy[i, j]
+
+            if ((i * nmod + j) % substreams == 9):
+                V[(6 + math.floor((i * nmod + j) / substreams) * substreams)] = yy[i, j]
+
+            if ((i * nmod + j) % substreams == 10):
+                V[(8 + math.floor((i * nmod + j) / substreams) * substreams)] = yy[i, j]
+
+            if ((i * nmod + j) % substreams == 11):
+                V[(5 + math.floor((i * nmod + j) / substreams) * substreams)] = yy[i, j]
+
+            if ((i * nmod + j) % substreams == 12):
+                V[(12 + math.floor((i * nmod + j) / substreams) * substreams)] = yy[i, j]
+
+            if ((i * nmod + j) % substreams == 13):
+                V[(2 + math.floor((i * nmod + j) / substreams) * substreams)] = yy[i, j]
+
+            if ((i * nmod + j) % substreams == 14):
+                V[(14 + math.floor((i * nmod + j) / substreams) * substreams)] = yy[i, j]
+
+            if ((i * nmod + j) % substreams == 15):
+                V[(0 + math.floor((i * nmod + j) / substreams) * substreams)] = yy[i, j]
+
+    if (V == vv).all():
+        print("OK")
+    else:
+        print("nie OK")
+    mat_out = {"v_output": V}
+    sci.savemat(f"demux_256_64800_without23-35_out", mat_out)
+    
+    
+def qam256_35_o(file, LDPC):
+    mat = sio.loadmat(file)
+
+    y = mat['y']
+    yy = y[0, 0]
+
+    v = mat['v']
+    vv = v[0, 0]
+
+    substreams = 16
+    nmod = 8
+
+    V = [0] * LDPC
+
+    for i in range(len(yy)):
+        for j in range(len(yy[i])):
+            if ((i * nmod + j) % substreams == 0):
+                V[4 + math.floor((i * nmod + j) / substreams) * substreams] = yy[i, j]
+
+            if ((i * nmod + j) % substreams == 1):
+                V[6 + math.floor((i * nmod + j) / substreams) * substreams] = yy[i, j]
+
+            if ((i * nmod + j) % substreams == 2):
+                V[(0 + math.floor((i * nmod + j) / substreams) * substreams)] = yy[i, j]
+            #
+            if ((i * nmod + j) % substreams == 3):
+                V[(2 + math.floor((i * nmod + j) / substreams) * substreams)] = yy[i, j]
+            #
+            if ((i * nmod + j) % substreams == 4):
+                V[(3 + math.floor((i * nmod + j) / substreams) * substreams)] = yy[i, j]
+            #
+            if ((i * nmod + j) % substreams == 5):
+                V[(14 + math.floor((i * nmod + j) / substreams) * substreams)] = yy[i, j]
+            #
+            if ((i * nmod + j) % substreams == 6):
+                V[(12 + math.floor((i * nmod + j) / substreams) * substreams)] = yy[i, j]
+            #
+            if ((i * nmod + j) % substreams == 7):
+                V[(10 + math.floor((i * nmod + j) / substreams) * substreams)] = yy[i, j]
+
+            if ((i * nmod + j) % substreams == 8):
+                V[(7 + math.floor((i * nmod + j) / substreams) * substreams)] = yy[i, j]
+
+            if ((i * nmod + j) % substreams == 9):
+                V[(5 + math.floor((i * nmod + j) / substreams) * substreams)] = yy[i, j]
+
+            if ((i * nmod + j) % substreams == 10):
+                V[(8 + math.floor((i * nmod + j) / substreams) * substreams)] = yy[i, j]
+
+            if ((i * nmod + j) % substreams == 11):
+                V[(1 + math.floor((i * nmod + j) / substreams) * substreams)] = yy[i, j]
+
+            if ((i * nmod + j) % substreams == 12):
+                V[(15 + math.floor((i * nmod + j) / substreams) * substreams)] = yy[i, j]
+
+            if ((i * nmod + j) % substreams == 13):
+                V[(9 + math.floor((i * nmod + j) / substreams) * substreams)] = yy[i, j]
+
+            if ((i * nmod + j) % substreams == 14):
+                V[(11 + math.floor((i * nmod + j) / substreams) * substreams)] = yy[i, j]
+
+            if ((i * nmod + j) % substreams == 15):
+                V[(13 + math.floor((i * nmod + j) / substreams) * substreams)] = yy[i, j]
+
+    if (V == vv).all():
+        print("OK")
+    else:
+        print("nie OK")
+        
+    mat_out = {"v_output": V}
+    sci.savemat(f"demux_256_64800_35_out", mat_out)
 
 # while True:
 
@@ -340,7 +484,10 @@ elif choice == "2.2":
 elif choice == "2.3":
     # print("demux_16_64800_35.mat")
     qam64_35_o(file, 64800)
-
+elif choice == "2.4":
+    # print("demux_256_64800_without_23.mat")
+    qam256_wo2335_o(file, 64800)
+    qam256_35_o(file, 64800)
 else:
     print("Wrong input\n")
 
