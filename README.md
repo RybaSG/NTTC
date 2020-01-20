@@ -72,11 +72,11 @@ python3 odbiorniki_meged.py <numer_zadania> <ścieżka_pliku.mat>
 Gdzie numer zadanie może przyjmować wartości:
 - 1.1 - Modulacja QPSK, LDPC = 16200
 - 1.2 - Modulacja QPSK, LDPC = 64800
-- 1.3 - Modulacja QAM16, LDPC = 64800, stopa kodu = 3/5
-- 1.4 - Modulacja QAM16, LDPC = 16200, stopa kodu = 3/5
+- 1.3 - Modulacja QAM16, LDPC = 64800, stopa kodu = 1/2,3/4,4/5, 5/6 and 2/3
+- 1.4 - Modulacja QAM16, LDPC = 16200, stopa kodu = 1/2, 3/4, 4/5, 3/5, 5/6 and 2/3
 - 1.5 - Modulacja QAM16, LDPC = 64800, stopa kodu = 3/5
-- 2.1 - Modulacja QAM64, LDPC = 64800, stopa kodu = 3/5
-- 2.2 - Modulacja QAM64, LDPC = 16200, stopa kodu = 3/5
+- 2.1 - Modulacja QAM64, LDPC = 64800, stopa kodu = 1/2,3/4,4/5, 5/6 and 2/3
+- 2.2 - Modulacja QAM64, LDPC = 16200, stopa kodu = 1/2, 3/4, 4/5, 3/5, 5/6 and 2/3
 - 2.3 - Modulacja QAM64, LDPC = 64800, stopa kodu = 3/5
 - 3   - Modulacja QAM256, LDPC = 16200
 
