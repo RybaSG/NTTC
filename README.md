@@ -79,6 +79,8 @@ Gdzie numer zadanie może przyjmować wartości:
 - 2.2 - Modulacja QAM64, LDPC = 16200, stopa kodu = 1/2, 3/4, 4/5, 3/5, 5/6 and 2/3
 - 2.3 - Modulacja QAM64, LDPC = 64800, stopa kodu = 3/5
 - 3   - Modulacja QAM256, LDPC = 16200
+- 4.1 - Modulacja QAM256, LDPC = 64800, stopa kodu = 1/2, 3/4 , 4/5, 5/6
+- 4.2 - Modulacja QAM256, LDPC = 64800, stopa kodu = 3/5
 
 Po uruchomieniu skryptu na przykładowych [danych](./mat_test_files) dane otrzymane przez skrypt 
 zostaną porównane z danymi znajdującymi się w pliku _*.mat_. Jeżeli dane się zgadzają na konsoli
