@@ -23,7 +23,7 @@ częście odbiorczej (multipleksera).
 
 # 3. Sposób użycia skryptów
 ## 3.1 Nadajnik
-W celu wykorzystania części nadawczej, należy użyć skryptu _nadajniki_marged,py_. W celu prawidłowego
+W celu wykorzystania części nadawczej, należy użyć skryptu _nadajniki_merged,py_. W celu prawidłowego
 działania skryptu należy przekazać następujące parametry wejściowe:
 - Ścieżka dostępu do pliku _*.mat_ zawierającego dane do przetworzenia 
     ```-
@@ -62,11 +62,11 @@ Jeżeli w trakcie działania skryptu wystąpi różnica pomiędzy danymi, stosow
 wyświetlona na konsoli.
 
 ## 3.2 Odbiornik
-W celu wykorzystania części odbiorczej, należy użyć skryptu _odbiorniki_marged,py_. 
+W celu wykorzystania części odbiorczej, należy użyć skryptu _odbiorniki_merged,py_. 
 W celu prawidłowego działania skryptu należy wywołać go poprzez linię poleceń w następujący sposób:
 
 ```
-python3 odbiorniki_meged.py <numer_zadania> <ścieżka_pliku.mat>
+python3 odbiorniki_merged.py <numer_zadania> <ścieżka_pliku.mat>
 ```
 
 Gdzie numer zadanie może przyjmować wartości:
