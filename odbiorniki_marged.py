@@ -255,7 +255,7 @@ def qam64_35_o(file,LDPC):
     sci.savemat(f"demux_64_64800_35_out", mat_out)
     
 def qam256_wo2335_o(file, LDPC):
-    mat = sio.loadmat(file)
+    mat = sci.loadmat(file)
 
     y = mat['y']
     yy = y[0, 0]
@@ -327,7 +327,7 @@ def qam256_wo2335_o(file, LDPC):
     
     
 def qam256_35_o(file, LDPC):
-    mat = sio.loadmat(file)
+    mat = sci.loadmat(file)
 
     y = mat['y']
     yy = y[0, 0]
